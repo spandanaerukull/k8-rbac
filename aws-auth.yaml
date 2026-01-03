@@ -15,7 +15,7 @@ kind: ConfigMap
 metadata:
   creationTimestamp: "2025-08-06T01:47:38Z"
   name: aws-auth
-  namespace: kube-system
+  namespace: kube-system # namespace where aws-auth ConfigMap is created
   uid: 7c47ebd8-d158-4e4e-b0e3-dce2584f27a6
 
 # aws-auth ConfigMap is used to map AWS IAM roles and users to Kubernetes RBAC groups and users

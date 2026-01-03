@@ -20,11 +20,8 @@ rules:
 - apiGroups: [""] # "" indicates the core API group
   resources: ["pods"] # nouns
   verbs: ["get", "watch", "list","create"] # actions
-- apiGroups: ["apps"]
-  #
-  # at the HTTP level, the name of the resource for accessing Deployment
-  # objects is "deployments"
-  resources: ["deployments"]
+- apiGroups: ["apps"] # "" indicates the core API group
+  resources: ["deployments"] # nouns suresh can do all operations on deployments
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -34,7 +31,7 @@ metadata:
   name: roboshop-lead
 rules:
 - apiGroups: ["*"] # "" indicates the core API group
-  resources: ["*"] # nouns
+  resources: ["*"] # nouns suresh can do all operations on all resources
   verbs: ["*"] # actions
 ---
 
@@ -62,7 +59,7 @@ metadata:
   name: roboshop-cluster
 rules:
 - apiGroups: [""]
-  resources: ["persistentvolumes"]
+  resources: ["persistentvolumes"] # nouns
   verbs: ["get", "list", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -73,8 +70,8 @@ metadata:
 subjects:
 - kind: User
   name: suresh # Name is case sensitive
-  apiGroup: rbac.authorization.k8s.io
-roleRef:
+  apiGroup: rbac.authorization.k8s.io # Indicates the API group of the subject
+roleRef: # "roleRef" specifies the binding to a Role / ClusterRole
   kind: ClusterRole
-  name: roboshop-cluster
+  name: roboshop-cluster # this must match the name of the Role or ClusterRole you wish to bind to
   apiGroup: rbac.authorization.k8s.io

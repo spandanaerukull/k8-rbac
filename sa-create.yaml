@@ -1,0 +1,11 @@
+# Service Account with IAM Role annotation for IRSA
+# This Service Account allows pods to assume the specified IAM role for accessing AWS resources securely
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::315069654700:role/eksctl-roboshop-dev-addon-iamserviceaccount-r-Role1-z0lIcOetEsmx
+  labels:
+    app.kubernetes.io/managed-by: eksctl
+  name: roboshop-mysql-secret-reader
+  namespace: roboshop
